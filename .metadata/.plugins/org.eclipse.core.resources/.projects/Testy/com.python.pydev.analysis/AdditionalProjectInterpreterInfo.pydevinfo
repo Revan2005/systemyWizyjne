@@ -1,0 +1,28 @@
+-- VERSION_4
+-- START DISKCACHE_2
+/home/tomek/workspace/systemyWizyjne/.metadata/.plugins/org.eclipse.core.resources/.projects/Testy/com.python.pydev.analysis/v2_indexcache
+histogramDoUsuwaniaBrwi|1447697091000000000|/home/tomek/workspace/systemyWizyjne/Testy/histogramDoUsuwaniaBrwi.py
+Capture|1448539026000000000|/home/tomek/workspace/systemyWizyjne/Testy/Capture.py
+test|1447354667000000000|/home/tomek/workspace/systemyWizyjne/Testy/test.py
+usuwanieBrwi|1447965372000000000|/home/tomek/workspace/systemyWizyjne/Testy/usuwanieBrwi.py
+-- END DISKCACHE
+-- START DICTIONARY
+4
+1=histogramDoUsuwaniaBrwi
+2=Capture
+4=test
+3=usuwanieBrwi
+-- END DICTIONARY
+-- START TREE 1
+7
+blu|1|blurred!11@
+cap|4|cap!19@cap!11@cap!27@cap!35@
+gra|3|gray!19@gray!35@gray!11@
+his|2|histShape0!11@histShape1!11@
+rem|2|removeRows!26@removeCols!26@
+usu|2|usunPionowe!26@usunPoziome!26@
+val|1|value!11@
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

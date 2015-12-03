@@ -1,0 +1,182 @@
+'''
+Created on 03-11-2015
+
+@author: tomek
+'''
+import numpy as np
+import cv2
+from methods import *
+import Tkinter as tk
+from Xlib import display
+#from menu import *
+from numpy import sqrt, real, math, double, sinc
+from cmath import atan, cos, sin, cosh
+from math import atan2
+from usuwanieBrwi import *
+
+root = tk.Tk()
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+ramkaWidth = 20
+ramkaHeight = 14
+  
+d = display.Display()              
+def setCursorPosition(x, y):  
+    s = d.screen()
+    root = s.root
+    root.warp_pointer(x,y)
+    d.sync()
+     
+def moveCursor(kierunek, speed):
+    d = display.Display().screen().root.query_pointer()._data
+    obecnyx = d["root_x"]
+    obecnyy = d["root_y"]
+    # 1-gora 2-prawo 3-dol 4-lewp
+    ruchx = 0
+    ruchy = 0
+    if kierunek == 1:
+        ruchx = 0
+        ruchy = -1*speed
+    elif kierunek == 2:
+        ruchx = 1*speed
+        ruchy = 0
+    elif kierunek == 3:
+        ruchx = 0
+        ruchy = 1*speed
+    elif kierunek == 4:
+        ruchx = -1*speed
+        ruchy = 0
+    setCursorPosition(obecnyx+ruchx, obecnyy+ruchy)
+    
+    
+def normalizeBrightness(first_img, img):
+    #normalizuje jasnosc
+    roznica_jasnosci = first_img.mean() - img.mean()
+    jedynki = np.ones_like(img) #tablica jedynek
+    deltki = cv2.multiply(jedynki,np.array([roznica_jasnosci])) # tablica o wymiarach obrazka wypelniona wartosciami  = roznica_jasnosci
+    img = cv2.add(img, deltki) 
+    #koniec normalizacji jasnosci
+    return img
+    
+def setThresholdValue(blurred, (pupilX, pupilY), okolicaOkaSize, threshold_value):
+    okolicaOkaBlurred = blurred[pupilY-okolicaOkaSize/2.0:pupilY+okolicaOkaSize/2.0, pupilX-okolicaOkaSize/2.0:pupilX+okolicaOkaSize/2.0]
+   
+    _, okolicaOkaOdswiezona = cv2.threshold(okolicaOkaBlurred, threshold_value, 255, cv2.ADAPTIVE_THRESH_MEAN_C)
+    sredniaJasnosc, _, __, ___ = cv2.mean(okolicaOkaOdswiezona)
+    tmp_threshold_value = threshold_value
+    if sredniaJasnosc<100:
+        while sredniaJasnosc<120:
+            if tmp_threshold_value >= 0:
+                tmp_threshold_value-=1
+            _, okolicaOkaOdswiezona = cv2.threshold(okolicaOkaBlurred, tmp_threshold_value, 255,cv2.ADAPTIVE_THRESH_MEAN_C)
+            cv2.imshow("okolicaokaodswiezona", okolicaOkaOdswiezona)
+            sredniaJasnosc, _, __, ___ = cv2.mean(okolicaOkaOdswiezona)
+    if sredniaJasnosc>245:
+        while sredniaJasnosc>120:
+            if tmp_threshold_value <= 255:
+                tmp_threshold_value+=1
+            _, okolicaOkaOdswiezona = cv2.threshold(okolicaOkaBlurred, tmp_threshold_value, 255, cv2.ADAPTIVE_THRESH_MEAN_C)
+            sredniaJasnosc, _, __, ___ = cv2.mean(okolicaOkaOdswiezona)
+    threshold_value = tmp_threshold_value   
+    return threshold_value
+
+if __name__ == '__main__':
+    #showMenu()
+    eye_cascade = cv2.CascadeClassifier('/home/tomek/workspace/systemyWizyjne/xmle/haarcascade_eye.xml')
+    '''   
+    try:
+        video_src = sys.argv[1]
+    except:
+        video_src = 0 
+    '''  
+    cap = cv2.VideoCapture(0)
+    _, img = cap.read()
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    eyes = eye_cascade.detectMultiScale(gray)
+    x,y,w,h = eyes[0] 
+    x0=x+w/2
+    y0=y+h/2
+    #teraz x0 i y0 sa srodkiem prostokata wycietego jako oko przez detektor oczu
+    pupilX = x0
+    pupilY = y0
+    oko_img = img[y0-ramkaHeight/2:y0+ramkaHeight/2, x0-ramkaWidth/2:x0+ramkaWidth/2]
+    oko_gray = cv2.cvtColor(oko_img, cv2.COLOR_BGR2GRAY)
+    value = (35, 35)
+    oko_blurred = cv2.GaussianBlur(oko_gray, value, 2)
+    #oko_blurred = cv2.flip(oko_blurred,1)
+    
+    
+    threshold_value = 70
+    cv2.namedWindow('image')
+    def nothing(*arg):
+        pass
+    cv2.createTrackbar('threshold_value', 'image', threshold_value, 255, nothing)
+    
+    _, oko_thresh = cv2.threshold(oko_blurred, threshold_value, 255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C)
+    #potrzebne do normalizacji jasnosci
+    _, first_img = cap.read()
+    first_img = cv2.flip(first_img, 1)
+    srednia_jasnosc = first_img.mean()
+    
+    while True:
+        _, img = cap.read()
+        img = cv2.flip(img, 1)
+        img = normalizeBrightness(first_img, img)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+       
+        oko_img = img[y0-h/2:y0+h/2, x0-w/2:x0+w/2] 
+        oko_gray = cv2.cvtColor(oko_img, cv2.COLOR_BGR2GRAY)
+        
+        value = (35, 35)
+        blurred = cv2.GaussianBlur(gray, value, 2)
+        #blurred = cv2.flip(blurred,1)
+        oko_blurred = cv2.GaussianBlur(oko_gray, value, 2)
+        #oko_blurred = cv2.flip(oko_blurred,1)
+        cv2.imshow("gaus", oko_blurred)
+        cv2.moveWindow("gaus", 800, 100)
+        
+        threshold_value = setThresholdValue(blurred, (pupilX, pupilY), 10, threshold_value) 
+        cv2.setTrackbarPos('threshold_value', 'image', threshold_value)
+        _, thresh = cv2.threshold(blurred, threshold_value, 255, cv2.ADAPTIVE_THRESH_MEAN_C)
+        _, oko_thresh = cv2.threshold(oko_blurred, threshold_value, 255, cv2.ADAPTIVE_THRESH_MEAN_C)
+        cv2.imshow('oko_thresh',oko_thresh)
+        thresh, _, _ = usunBrew(thresh)
+        
+        
+        
+        #wywolanie glownej metody ==================================================================================================================
+
+        pupilX, pupilY, x0, y0, kierunek, speed = pupil_position_meanshift(thresh, (x0, y0), (pupilX, pupilY))
+        #x0 = int(x0)
+        #y0 = int(y0)
+        
+        #pupilX, pupilY, x0, y0, kierunek, speed = pupil_position_ranzac(thresh, (x0, y0), (pupilX, pupilY))
+        x0 = int(x0)
+        y0 = int(y0)
+        
+        #koniec wywolania glownej metody ===========================================================================================================
+        
+        
+        
+        
+        
+        #rysuje niebieska kropke z pozycja zrenicy
+        cv2.rectangle(img, (pupilX, pupilY), (pupilX-1, pupilY+1), (255,0,0),2)#plus w, minus przy a :bo robie flip = obrot prawo lewo = lustrzane odbicie
+        moveCursor(kierunek, speed)
+        #if menu.isModeOn():
+       
+        '''
+        cv2.moveWindow("thresh", 800,0)
+        cv2.rectangle(img,(x-w/2,y-h/2),(x+w/2,y+h/2),(0,255,0),2)
+        '''
+        #ramka
+        cv2.rectangle(img, (x0-ramkaWidth/2,y0-ramkaHeight/2), (x0+ramkaWidth/2,y0+ramkaHeight/2), (255,0,0),2)
+        
+        vis = img.copy()
+        #vis = cv2.flip(vis, 1)
+        cv2.imshow('image',vis)
+        if 0xFF & cv2.waitKey(5) == 27:
+            break
+    
+    cap.release()
+    cv2.destroyAllWindows()

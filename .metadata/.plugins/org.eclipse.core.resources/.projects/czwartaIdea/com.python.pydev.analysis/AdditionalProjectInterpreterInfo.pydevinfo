@@ -1,0 +1,89 @@
+-- VERSION_4
+-- START DISKCACHE_2
+/home/tomek/workspace/systemyWizyjne/.metadata/.plugins/org.eclipse.core.resources/.projects/czwartaIdea/com.python.pydev.analysis/v2_indexcache
+methods|1448567586000000000|/home/tomek/workspace/systemyWizyjne/czwartaIdea/methods.py
+__init__|1448620253000000000|/home/tomek/workspace/systemyWizyjne/czwartaIdea/__init__.py
+common|1433352094000000000|/home/tomek/workspace/systemyWizyjne/czwartaIdea/common.py
+EyeTracking|1448618878000000000|/home/tomek/workspace/systemyWizyjne/czwartaIdea/EyeTracking.py
+usuwanieBrwi|1448537196000000000|/home/tomek/workspace/systemyWizyjne/czwartaIdea/usuwanieBrwi.py
+ranzac|1448616650000000000|/home/tomek/workspace/systemyWizyjne/czwartaIdea/ranzac.py
+-- END DISKCACHE
+-- START DICTIONARY
+15
+2=methods
+9=Bunch
+7=StatValue
+1=common
+13=RectSelector.onmouse
+4=EyeTracking
+5=usuwanieBrwi
+15=StatValue.update
+10=RectSelector.__init__
+12=Sketcher.on_mouse
+11=Sketcher.__init__
+6=RectSelector
+3=ranzac
+14=StatValue.__init__
+8=Sketcher
+-- END DICTIONARY
+-- START TREE 1
+40
+_je|1|_jet_data!11@
+ano|2|anorm!10@anorm2!10@
+bla|1|black_field!18@
+bun|1|Bunch!9@
+cal|3|calculateerror!26@calculatemodel!26@calculatedistance!26@
+clo|1|clock!10@
+cma|1|cmap_data!11@
+czy|8|czyMoznaWLewo!26@czyMoznaWPrawo!18@czyMoznaWGore!26@czyMoznaWGore!18@czyMoznaWDol!26@czyMoznaWPrawo!26@czyMoznaWDol!18@czyMoznaWLewo!18@
+d|1|d!35@
+dra|2|draw_str!10@draw_keypoints!10@
+get|3|getPupilPosition!26@getsize!10@getBorderPoints!26@
+gro|1|grouper!10@
+hom|1|homotrans!10@
+ima|1|image_extensions!11@
+kor|1|korektaPupil!18@
+loo|1|lookat!10@
+mak|1|make_cmap!10@
+mdo|1|mdot!10@
+mos|1|mosaic!10@
+mov|1|moveCursor!34@
+mtx|1|mtx2rvec!10@
+nor|1|normalizeBrightness!34@
+not|1|nothing!10@
+obl|1|obliczPozycjeRamki!18@
+pop|1|poprawka_na_krawedz_ekranu!26@
+pup|2|pupil_position_meanshift!18@pupil_position_ranzac!26@
+ram|4|ramkaHeight!35@ramkaWidth!35@ramkaWidth!19@ramkaHeight!19@
+ran|1|ranzac!26@
+rec|2|RectSelector!9@rect2rect_mtx!10@
+rem|2|removeRows!42@removeCols!42@
+roo|2|root!19@root!35@
+s|1|s!35@
+scr|4|screen_width!19@screen_height!35@screen_height!19@screen_width!35@
+set|2|setCursorPosition!34@setThresholdValue!34@
+ske|1|Sketcher!9@
+spl|1|splitfn!10@
+sta|1|StatValue!9@
+tim|1|Timer!10@
+to_|1|to_rect!10@
+usu|1|usunBrew!42@
+-- END TREE
+-- START TREE 2
+15
+__i|4|__init__!6&10@__init__!7&10@__init__!8&10@__init__!9&10@
+__s|1|__str__!9&10@
+cal|1|callback!10&11@
+col|1|colors_func!11&11@
+des|1|dests!11&11@
+dir|2|dirty!12&11@dirty!11&11@
+dra|6|dragging!6&10@draw!6&10@drag_rect!13&11@drag_rect!10&11@drag_start!13&11@drag_start!10&11@
+on_|1|on_mouse!8&10@
+onm|1|onmouse!6&10@
+pre|2|prev_pt!12&11@prev_pt!11&11@
+sho|1|show!8&10@
+smo|1|smooth_coef!14&11@
+upd|1|update!7&10@
+val|2|value!15&11@value!14&11@
+win|2|win!10&11@windowname!11&11@
+-- END TREE
