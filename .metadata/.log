@@ -2255,3 +2255,620 @@ java.util.ConcurrentModificationException
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:608)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1515)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1488)
+!SESSION 2015-12-12 17:09:24.177 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.7.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.fx.code.editor.ldef 4 0 2015-12-12 17:09:25.499
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.code.editor.ldef [582]
+  Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.code.editor.ldef.ui 4 0 2015-12-12 17:09:25.505
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.code.editor.ldef.ui [583]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.code.editor.ldef; visibility:="reexport"
+    -> Bundle-SymbolicName: org.eclipse.fx.code.editor.ldef; bundle-version="2.1.0.201508240602"; singleton:="true"
+       org.eclipse.fx.code.editor.ldef [582]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.core 4 0 2015-12-12 17:09:25.514
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.core [584]
+  Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+  Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+    -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+       org.eclipse.jdt.annotation [199]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.core.guice 4 0 2015-12-12 17:09:25.524
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.core.guice [585]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.core; bundle-version="0.9.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.core; bundle-version="2.1.0.201508240602"
+       org.eclipse.fx.core [584]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+         Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+           -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+              org.eclipse.jdt.annotation [199]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.formats.svg 4 0 2015-12-12 17:09:25.529
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.formats.svg [586]
+  Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+  Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+    -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+       org.eclipse.jdt.annotation [199]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.css 4 0 2015-12-12 17:09:25.534
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css [588]
+  Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.css.cssext 4 0 2015-12-12 17:09:25.541
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.cssext [589]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.core; bundle-version="0.9.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.core; bundle-version="2.1.0.201508240602"
+       org.eclipse.fx.core [584]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+         Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+           -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+              org.eclipse.jdt.annotation [199]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.css.cssext.proposals 4 0 2015-12-12 17:09:25.549
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.cssext.proposals [590]
+  Unresolved requirement: Import-Package: org.eclipse.fx.ide.css.extapi
+    -> Export-Package: org.eclipse.fx.ide.css.extapi; bundle-version="2.1.0.201508240705"; bundle-symbolic-name="org.eclipse.fx.ide.css"; version="0.0.0"; x-friends:="org.eclipse.fx.ide.css.ui"
+       org.eclipse.fx.ide.css [588]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.css.cssext.ui 4 0 2015-12-12 17:09:25.558
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.cssext.ui [591]
+  Unresolved requirement: Import-Package: org.eclipse.fx.osgi.util
+    -> Export-Package: org.eclipse.fx.osgi.util; bundle-version="2.1.0.201508240602"; bundle-symbolic-name="org.eclipse.fx.osgi.util"; version="0.0.0"
+       org.eclipse.fx.osgi.util [617]
+         Unresolved requirement: Require-Bundle: org.eclipse.fx.core; bundle-version="0.9.0"
+           -> Bundle-SymbolicName: org.eclipse.fx.core; bundle-version="2.1.0.201508240602"
+              org.eclipse.fx.core [584]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+                Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+                  -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+                     org.eclipse.jdt.annotation [199]
+                       Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.css.jfx8 4 0 2015-12-12 17:09:25.564
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.jfx8 [593]
+  Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.css.ui 4 0 2015-12-12 17:09:25.572
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.css.ui [594]
+  Unresolved requirement: Import-Package: org.eclipse.fx.osgi.util
+    -> Export-Package: org.eclipse.fx.osgi.util; bundle-version="2.1.0.201508240602"; bundle-symbolic-name="org.eclipse.fx.osgi.util"; version="0.0.0"
+       org.eclipse.fx.osgi.util [617]
+         Unresolved requirement: Require-Bundle: org.eclipse.fx.core; bundle-version="0.9.0"
+           -> Bundle-SymbolicName: org.eclipse.fx.core; bundle-version="2.1.0.201508240602"
+              org.eclipse.fx.core [584]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+                Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+                  -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+                     org.eclipse.jdt.annotation [199]
+                       Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.fxgraph 4 0 2015-12-12 17:09:25.578
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.fxgraph [595]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.ui; bundle-version="0.9.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.ide.ui; bundle-version="2.1.0.201508240705"; singleton:="true"
+       org.eclipse.fx.ide.ui [612]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.fxgraph.ui 4 0 2015-12-12 17:09:25.584
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.fxgraph.ui [596]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.fxgraph; visibility:="reexport"
+    -> Bundle-SymbolicName: org.eclipse.fx.ide.fxgraph; bundle-version="2.1.0.201508240705"; singleton:="true"
+       org.eclipse.fx.ide.fxgraph [595]
+         Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.ui; bundle-version="0.9.0"
+           -> Bundle-SymbolicName: org.eclipse.fx.ide.ui; bundle-version="2.1.0.201508240705"; singleton:="true"
+              org.eclipse.fx.ide.ui [612]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.fxml 4 0 2015-12-12 17:09:25.587
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.fxml [597]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.model; bundle-version="0.9.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.ide.model; bundle-version="2.1.0.201508240705"; singleton:="true"
+       org.eclipse.fx.ide.model [604]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+         Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="2.0.0"; resolution:="optional"
+           -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+              org.eclipse.jdt.annotation [199]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.jdt.core 4 0 2015-12-12 17:09:25.592
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.jdt.core [600]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.core; bundle-version="0.9.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.core; bundle-version="2.1.0.201508240602"
+       org.eclipse.fx.core [584]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+         Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+           -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+              org.eclipse.jdt.annotation [199]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.jdt.ui 4 0 2015-12-12 17:09:25.596
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.jdt.ui [601]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.jdt.core; bundle-version="0.9.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.ide.jdt.core; bundle-version="2.1.0.201508240705"; singleton:="true"
+       org.eclipse.fx.ide.jdt.core [600]
+         Unresolved requirement: Require-Bundle: org.eclipse.fx.core; bundle-version="0.9.0"
+           -> Bundle-SymbolicName: org.eclipse.fx.core; bundle-version="2.1.0.201508240602"
+              org.eclipse.fx.core [584]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+                Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+                  -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+                     org.eclipse.jdt.annotation [199]
+                       Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.model 4 0 2015-12-12 17:09:25.600
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.model [604]
+  Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+  Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="2.0.0"; resolution:="optional"
+    -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+       org.eclipse.jdt.annotation [199]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.pde.core 4 0 2015-12-12 17:09:25.604
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.pde.core [605]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.jdt.core
+    -> Bundle-SymbolicName: org.eclipse.fx.ide.jdt.core; bundle-version="2.1.0.201508240705"; singleton:="true"
+       org.eclipse.fx.ide.jdt.core [600]
+         Unresolved requirement: Require-Bundle: org.eclipse.fx.core; bundle-version="0.9.0"
+           -> Bundle-SymbolicName: org.eclipse.fx.core; bundle-version="2.1.0.201508240602"
+              org.eclipse.fx.core [584]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+                Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+                  -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+                     org.eclipse.jdt.annotation [199]
+                       Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.pde.ui 4 0 2015-12-12 17:09:25.609
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.pde.ui [606]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.jdt.core; bundle-version="0.9.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.ide.jdt.core; bundle-version="2.1.0.201508240705"; singleton:="true"
+       org.eclipse.fx.ide.jdt.core [600]
+         Unresolved requirement: Require-Bundle: org.eclipse.fx.core; bundle-version="0.9.0"
+           -> Bundle-SymbolicName: org.eclipse.fx.core; bundle-version="2.1.0.201508240602"
+              org.eclipse.fx.core [584]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+                Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+                  -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+                     org.eclipse.jdt.annotation [199]
+                       Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.pde.ui.e4 4 0 2015-12-12 17:09:25.615
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.pde.ui.e4 [607]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.pde.ui; bundle-version="0.9.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.ide.pde.ui; bundle-version="2.1.0.201508240705"; singleton:="true"
+       org.eclipse.fx.ide.pde.ui [606]
+         Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.jdt.core; bundle-version="0.9.0"
+           -> Bundle-SymbolicName: org.eclipse.fx.ide.jdt.core; bundle-version="2.1.0.201508240705"; singleton:="true"
+              org.eclipse.fx.ide.jdt.core [600]
+                Unresolved requirement: Require-Bundle: org.eclipse.fx.core; bundle-version="0.9.0"
+                  -> Bundle-SymbolicName: org.eclipse.fx.core; bundle-version="2.1.0.201508240602"
+                     org.eclipse.fx.core [584]
+                       Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+                       Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+                         -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+                            org.eclipse.jdt.annotation [199]
+                              Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.rrobot 4 0 2015-12-12 17:09:25.618
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.rrobot [608]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.rrobot.model; bundle-version="0.9.0"; visibility:="reexport"
+    -> Bundle-SymbolicName: org.eclipse.fx.ide.rrobot.model; bundle-version="2.1.0.201508240705"; singleton:="true"
+       org.eclipse.fx.ide.rrobot.model [611]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+         Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="2.0.0"; resolution:="optional"
+           -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+              org.eclipse.jdt.annotation [199]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.rrobot.dsl 4 0 2015-12-12 17:09:25.621
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.rrobot.dsl [609]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.rrobot.model
+    -> Bundle-SymbolicName: org.eclipse.fx.ide.rrobot.model; bundle-version="2.1.0.201508240705"; singleton:="true"
+       org.eclipse.fx.ide.rrobot.model [611]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+         Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="2.0.0"; resolution:="optional"
+           -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+              org.eclipse.jdt.annotation [199]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.rrobot.dsl.ui 4 0 2015-12-12 17:09:25.625
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.rrobot.dsl.ui [610]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.rrobot.dsl; visibility:="reexport"
+    -> Bundle-SymbolicName: org.eclipse.fx.ide.rrobot.dsl; bundle-version="2.1.0.201508240705"; singleton:="true"
+       org.eclipse.fx.ide.rrobot.dsl [609]
+         Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.rrobot.model
+           -> Bundle-SymbolicName: org.eclipse.fx.ide.rrobot.model; bundle-version="2.1.0.201508240705"; singleton:="true"
+              org.eclipse.fx.ide.rrobot.model [611]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+                Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="2.0.0"; resolution:="optional"
+                  -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+                     org.eclipse.jdt.annotation [199]
+                       Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.rrobot.model 4 0 2015-12-12 17:09:25.628
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.rrobot.model [611]
+  Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+  Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="2.0.0"; resolution:="optional"
+    -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+       org.eclipse.jdt.annotation [199]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.ui 4 0 2015-12-12 17:09:25.631
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.ui [612]
+  Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.ui.mobile.sim.launch 4 0 2015-12-12 17:09:25.636
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.ui.mobile.sim.launch [614]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.osgi.util; bundle-version="0.9.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.osgi.util; bundle-version="2.1.0.201508240602"
+       org.eclipse.fx.osgi.util [617]
+         Unresolved requirement: Require-Bundle: org.eclipse.fx.core; bundle-version="0.9.0"
+           -> Bundle-SymbolicName: org.eclipse.fx.core; bundle-version="2.1.0.201508240602"
+              org.eclipse.fx.core [584]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+                Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+                  -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+                     org.eclipse.jdt.annotation [199]
+                       Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ide.ui.preview 4 0 2015-12-12 17:09:25.640
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ide.ui.preview [615]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.ide.ui; bundle-version="0.9.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.ide.ui; bundle-version="2.1.0.201508240705"; singleton:="true"
+       org.eclipse.fx.ide.ui [612]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.osgi.util 4 0 2015-12-12 17:09:25.644
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.osgi.util [617]
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.core; bundle-version="0.9.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.core; bundle-version="2.1.0.201508240602"
+       org.eclipse.fx.core [584]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+         Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+           -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+              org.eclipse.jdt.annotation [199]
+                Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.fx.ui.controls 4 0 2015-12-12 17:09:25.646
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.fx.ui.controls [619]
+  Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+    -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+       org.eclipse.jdt.annotation [199]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+  Unresolved requirement: Require-Bundle: org.eclipse.fx.ui.panes; bundle-version="1.2.0"
+    -> Bundle-SymbolicName: org.eclipse.fx.ui.panes; bundle-version="2.1.0.201508240602"
+       org.eclipse.fx.ui.panes [621]
+         Unresolved requirement: Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+         Unresolved requirement: Require-Bundle: org.eclipse.jdt.annotation; bundle-version="[2.0.0,3.0.0)"; resolution:="optional"
+           -> Bundle-SymbolicName: org.eclipse.jdt.annotation; bundle-version="2.0.100.v20150311-1658"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:434)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1582)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1561)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1533)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1476)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)

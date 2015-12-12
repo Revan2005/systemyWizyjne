@@ -134,7 +134,7 @@ def capture():
         oko_gray = cv2.cvtColor(oko_color, cv2.COLOR_BGR2GRAY)
         value = (35, 35)
         blurred = cv2.GaussianBlur(oko_gray, value, 2)
-        _, oko_thresh = cv2.threshold(blurred, 50, 255, cv2.ADAPTIVE_THRESH_MEAN_C)
+        _, oko_thresh = cv2.threshold(blurred, 55, 255, cv2.ADAPTIVE_THRESH_MEAN_C)
         points = getBorderPoints(oko_thresh)
         oko_punkty = oko_color.copy()
         drawPoints(oko_punkty, points)

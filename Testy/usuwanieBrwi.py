@@ -127,7 +127,7 @@ while(True):
     value = (35,35)
     blurred = cv2.GaussianBlur(gray, value, 2)
     blurred = blurred[300:350, 300:400]
-    _, thresh = cv2.threshold(blurred, 75, 255, cv2.ADAPTIVE_THRESH_MEAN_C)
+    _, thresh = cv2.threshold(blurred, 65, 255, cv2.ADAPTIVE_THRESH_MEAN_C)
        
     cv2.imshow('przed zabiegami',thresh)   
     thresh, histShape0, granice = usunPoziome(thresh)
