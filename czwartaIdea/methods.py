@@ -22,8 +22,9 @@ screen_height = root.winfo_screenheight()
 
 
 
-ramkaWidth = 24
-ramkaHeight = 19
+ramkaWidth = 30
+ramkaHeight = 21
+gruboscObszaruSterowaniaKursorrem = 8;
 
 def czyMoznaWPrawo(px, py, capWidth, capHeight):
     if px < capWidth-ramkaWidth / 2 - 5:
@@ -49,7 +50,7 @@ def czyMoznaWDol(px, py, capWidth, capHeight):
 def black_field(thresh, (pupilX, pupilY)):
     rozmiar = 10
     cropped_thresh = thresh[pupilY-rozmiar/2:pupilY+rozmiar/2, pupilX-rozmiar/2:pupilX+rozmiar/2]
-    cv2.imshow('kropd', cropped_thresh)
+    #cv2.imshow('kropd', cropped_thresh)
     return 255-cv2.mean(cropped_thresh)[0]
 
   
@@ -166,7 +167,7 @@ def korektaPupil(thresh, (x0,y0), (pupilX, pupilY)):
     elif speedNegY == maxSpeed:
         kierunek = 1
     speed = maxSpeed
-    print 'speed na koncu = ', speed
+    #print 'speed na koncu = ', speed
 
     return (pupilX, pupilY, x0, y0, kierunek, speed)
 

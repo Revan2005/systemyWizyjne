@@ -1,0 +1,15 @@
+INSTUPEyeTracking
+/home/tomek/workspace/systemyWizyjne/czwartaIdea/EyeTracking.py
+INFOS:&&3|1|2|0&&3|3|2|0&&3|4|2|0&&3|5|2|0&&3|6|2|0&&3|7|2|0&&2|8|2|0&&3|9|2|0&&3|1|2|0&&2|10|2|0&&2|11|2|0&&2|12|2|0
+setCursorPosition=8
+d=7
+setThresholdValue=12
+s=9
+root=1
+ramkaWidth=5
+normalizeBrightness=11
+screen_width=3
+EyeTracking=2
+moveCursor=10
+ramkaHeight=6
+screen_height=4

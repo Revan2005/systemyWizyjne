@@ -13,14 +13,40 @@ from numpy import sqrt, real, math, double, sinc
 from cmath import atan, cos, sin, cosh
 from math import atan2
 import ranzac
+import pyautogui
 
 
 root = tk.Tk()
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 
-ramkaWidth = 24
-ramkaHeight = 19
+ramkaWidth = 30
+ramkaHeight = 21
+gruboscObszaruSterowaniaKursorem = 8;
+
+dlugoscObszaruKlikania = ramkaWidth - 2*gruboscObszaruSterowaniaKursorem
+wysokoscObszaruKlikania = ramkaHeight - 2*gruboscObszaruSterowaniaKursorem
+
+#inicjalizacja licznikowKlatek
+liczbaKlatekLPM = 0
+liczbaKlatek2LPM = 0
+liczbaKlatekPPM = 0
+LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = 25
+
+def czyLPM( (x, y), (x0, y0) ):
+    if( (x0 <= x) & (x <= x0 + dlugoscObszaruKlikania/3) & (y0 <= y) & (y <= y0 + wysokoscObszaruKlikania) ):
+        return True
+    return False
+ 
+def czy2LPM( (x, y), (x0, y0) ):
+    if( ( x0 + dlugoscObszaruKlikania/3 < x) & (x <= x0 + dlugoscObszaruKlikania*2/3) & (y0 <= y) & (y <= y0 + wysokoscObszaruKlikania) ):
+        return True
+    return False
+    
+def czyPPM( (x, y), (x0, y0) ): 
+    if( (x0 + dlugoscObszaruKlikania*2/3 < x) & (x <= x0 + dlugoscObszaruKlikania) & (y0 <= y) & (y <= y0 + wysokoscObszaruKlikania) ):
+        return True
+    return False  
   
 d = display.Display()              
 def setCursorPosition(x, y):  
@@ -71,7 +97,7 @@ def setThresholdValue(blurred, (pupilX, pupilY), okolicaOkaSize, threshold_value
             if tmp_threshold_value >= 0:
                 tmp_threshold_value-=1
             _, okolicaOkaOdswiezona = cv2.threshold(okolicaOkaBlurred, tmp_threshold_value, 255,cv2.ADAPTIVE_THRESH_MEAN_C)
-            cv2.imshow("okolicaokaodswiezona", okolicaOkaOdswiezona)
+            #cv2.imshow("okolicaokaodswiezona", okolicaOkaOdswiezona)
             sredniaJasnosc, _, __, ___ = cv2.mean(okolicaOkaOdswiezona)
     if sredniaJasnosc>245:
         while sredniaJasnosc>120:
@@ -122,6 +148,7 @@ if __name__ == '__main__':
     first_img = cv2.flip(first_img, 1)
     srednia_jasnosc = first_img.mean()
     
+    
     while True:
         _, img = cap.read()
         img = cv2.flip(img, 1)
@@ -136,14 +163,14 @@ if __name__ == '__main__':
         #blurred = cv2.flip(blurred,1)
         oko_blurred = cv2.GaussianBlur(oko_gray, value, 2)
         #oko_blurred = cv2.flip(oko_blurred,1)
-        cv2.imshow("gaus", oko_blurred)
-        cv2.moveWindow("gaus", 800, 100)
+        #cv2.imshow("gaus", oko_blurred)
+        #cv2.moveWindow("gaus", 800, 100)
         
         threshold_value = setThresholdValue(blurred, (pupilX, pupilY), 10, threshold_value) 
         cv2.setTrackbarPos('threshold_value', 'image', threshold_value)
         _, thresh = cv2.threshold(blurred, threshold_value, 255, cv2.ADAPTIVE_THRESH_MEAN_C)
         _, oko_thresh = cv2.threshold(oko_blurred, threshold_value, 255, cv2.ADAPTIVE_THRESH_MEAN_C)
-        cv2.imshow('oko_thresh',oko_thresh)
+        #cv2.imshow('oko_thresh',oko_thresh)
         #removeEyeBrow(oko_thresh)
         capHeight, capWidth = img.shape[:2]
         
@@ -161,13 +188,6 @@ if __name__ == '__main__':
         y0 = int(y0)
         
         #koniec wywolania glownej metody =====================================================================================================
-        
-        
-        
-        #rysuje niebieska kropke z pozycja zrenicy
-        cv2.rectangle(img, (pupilX, pupilY), (pupilX-1, pupilY+1), (255,0,0),2)#plus w, minus przy a :bo robie flip = obrot prawo lewo = lustrzane odbicie
-        moveCursor(kierunek, speed)
-        #if menu.isModeOn():
        
         '''
         cv2.moveWindow("thresh", 800,0)
@@ -175,6 +195,56 @@ if __name__ == '__main__':
         '''
         #ramka
         cv2.rectangle(img, (x0-ramkaWidth/2,y0-ramkaHeight/2), (x0+ramkaWidth/2,y0+ramkaHeight/2), (255,0,0),2)
+        #polprzezroczyste kwadraciki oznaczajace obszary klikania
+        x0Klikanie = x0 - ramkaWidth/2 + gruboscObszaruSterowaniaKursorem
+        y0Klikanie = y0 - ramkaHeight/2 + gruboscObszaruSterowaniaKursorem
+        #dlugoscObszaruKlikania = ramkaWidth - 2*gruboscObszaruSterowaniaKursorem
+        #wysokoscObszaruKlikania = ramkaHeight - 2*gruboscObszaruSterowaniaKursorem
+        #po lewej 1xLPM
+        cv2.rectangle(img, (x0Klikanie, y0Klikanie),
+                           (x0Klikanie + dlugoscObszaruKlikania/3, y0Klikanie + wysokoscObszaruKlikania), (0,0,255), -1)
+        #posrodku 2XLPM
+        cv2.rectangle(img, (x0Klikanie + dlugoscObszaruKlikania/3+1, y0Klikanie),
+                           (x0Klikanie + dlugoscObszaruKlikania*2/3, y0Klikanie + wysokoscObszaruKlikania), (0,255,255), -1)
+        #po prawej 1xPPM
+        cv2.rectangle(img, (x0Klikanie + dlugoscObszaruKlikania*2/3+1, y0Klikanie),
+                           (x0Klikanie + dlugoscObszaruKlikania, y0Klikanie + wysokoscObszaruKlikania), (0,0,255), -1)     
+        #rysuje niebieska kropke z pozycja zrenicy
+        cv2.rectangle(img, (pupilX, pupilY), (pupilX-1, pupilY+1), (255,0,0),2)#plus w, minus przy a :bo robie flip = obrot prawo lewo = lustrzane odbicie
+        moveCursor(kierunek, speed)
+        #sprawdzam czy kursor jest w ktoryms z obrzarow klikania 
+        if( czyLPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
+            #print "LPM"
+            liczbaKlatekLPM += 1
+            liczbaKlatek2LPM = 0
+            liczbaKlatekPPM = 0
+        elif( czy2LPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
+            #print "double left click"
+            liczbaKlatekLPM = 0
+            liczbaKlatek2LPM +=1 
+            liczbaKlatekPPM = 0
+        elif( czyPPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
+            #print "right click"
+            liczbaKlatekLPM = 0
+            liczbaKlatek2LPM = 0
+            liczbaKlatekPPM += 1
+        else:
+            liczbaKlatekLPM = 0
+            liczbaKlatek2LPM = 0
+            liczbaKlatekPPM = 0
+        if(liczbaKlatekLPM > LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI):
+            print "KLIKAJ LEWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            pyautogui.click()
+            liczbaKlatekLPM = 0
+        if(liczbaKlatek2LPM > LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI):
+            print "KLIKAJ 2x LEWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            pyautogui.click(clicks=2)
+            liczbaKlatek2LPM = 0
+        if(liczbaKlatekPPM > LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI):
+            print "KLIKAJ PRAWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            pyautogui.click(button='right')
+            liczbaKlatekPPM = 0
+        #if menu.isModeOn():
         
         vis = img.copy()
         #vis = cv2.flip(vis, 1)

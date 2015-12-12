@@ -1,0 +1,17 @@
+INSTUPmethods
+/home/tomek/workspace/systemyWizyjne/czwartaIdea/methods.py
+INFOS:&&3|1|2|0&&3|3|2|0&&3|4|2|0&&3|5|2|0&&3|6|2|0&&2|7|2|0&&2|8|2|0&&2|9|2|0&&2|10|2|0&&2|11|2|0&&2|12|2|0&&2|13|2|0&&2|14|2|0
+methods=2
+black_field=11
+czyMoznaWDol=10
+pupil_position_meanshift=14
+czyMoznaWGore=9
+root=1
+ramkaWidth=5
+obliczPozycjeRamki=13
+screen_width=3
+korektaPupil=12
+czyMoznaWLewo=8
+czyMoznaWPrawo=7
+ramkaHeight=6
+screen_height=4
