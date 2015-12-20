@@ -14,15 +14,16 @@ from cmath import atan, cos, sin, cosh
 from math import atan2
 import ranzac
 import pyautogui
+from matplotlib.backends.windowing import SetForegroundWindow
 
 
 root = tk.Tk()
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 
-ramkaWidth = 30
-ramkaHeight = 21
-gruboscObszaruSterowaniaKursorem = 8;
+ramkaWidth = 25
+ramkaHeight = 15
+gruboscObszaruSterowaniaKursorem = 2;
 
 dlugoscObszaruKlikania = ramkaWidth - 2*gruboscObszaruSterowaniaKursorem
 wysokoscObszaruKlikania = ramkaHeight - 2*gruboscObszaruSterowaniaKursorem
@@ -31,20 +32,20 @@ wysokoscObszaruKlikania = ramkaHeight - 2*gruboscObszaruSterowaniaKursorem
 liczbaKlatekLPM = 0
 liczbaKlatek2LPM = 0
 liczbaKlatekPPM = 0
-LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = 25
+LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = 15
 
 def czyLPM( (x, y), (x0, y0) ):
-    if( (x0 <= x) & (x <= x0 + dlugoscObszaruKlikania/3) & (y0 <= y) & (y <= y0 + wysokoscObszaruKlikania) ):
+    if( (x0 < x) & (x <= x0 + dlugoscObszaruKlikania/3) & (y0 < y) & (y < y0 + wysokoscObszaruKlikania) ):
         return True
     return False
  
 def czy2LPM( (x, y), (x0, y0) ):
-    if( ( x0 + dlugoscObszaruKlikania/3 < x) & (x <= x0 + dlugoscObszaruKlikania*2/3) & (y0 <= y) & (y <= y0 + wysokoscObszaruKlikania) ):
+    if( ( x0 + dlugoscObszaruKlikania/3 < x) & (x <= x0 + dlugoscObszaruKlikania*2/3) & (y0 < y) & (y < y0 + wysokoscObszaruKlikania) ):
         return True
     return False
     
 def czyPPM( (x, y), (x0, y0) ): 
-    if( (x0 + dlugoscObszaruKlikania*2/3 < x) & (x <= x0 + dlugoscObszaruKlikania) & (y0 <= y) & (y <= y0 + wysokoscObszaruKlikania) ):
+    if( (x0 + dlugoscObszaruKlikania*2/3 < x) & (x < x0 + dlugoscObszaruKlikania) & (y0 < y) & (y < y0 + wysokoscObszaruKlikania) ):
         return True
     return False  
   
@@ -129,6 +130,8 @@ if __name__ == '__main__':
     #teraz x0 i y0 sa srodkiem prostokata wycietego jako oko przez detektor oczu
     pupilX = x0
     pupilY = y0
+    pupilXOld = pupilX
+    pupilYOld = pupilY
     oko_img = img[y0-ramkaHeight/2:y0+ramkaHeight/2, x0-ramkaWidth/2:x0+ramkaWidth/2]
     oko_gray = cv2.cvtColor(oko_img, cv2.COLOR_BGR2GRAY)
     value = (35, 35)
@@ -138,6 +141,8 @@ if __name__ == '__main__':
     
     threshold_value = 70
     cv2.namedWindow('image')
+    
+    
     def nothing(*arg):
         pass
     cv2.createTrackbar('threshold_value', 'image', threshold_value, 255, nothing)
@@ -149,7 +154,7 @@ if __name__ == '__main__':
     srednia_jasnosc = first_img.mean()
     
     
-    while True:
+    while True:        
         _, img = cap.read()
         img = cv2.flip(img, 1)
         img = normalizeBrightness(first_img, img)
@@ -213,38 +218,46 @@ if __name__ == '__main__':
         cv2.rectangle(img, (pupilX, pupilY), (pupilX-1, pupilY+1), (255,0,0),2)#plus w, minus przy a :bo robie flip = obrot prawo lewo = lustrzane odbicie
         moveCursor(kierunek, speed)
         #sprawdzam czy kursor jest w ktoryms z obrzarow klikania 
-        if( czyLPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
-            #print "LPM"
-            liczbaKlatekLPM += 1
-            liczbaKlatek2LPM = 0
-            liczbaKlatekPPM = 0
-        elif( czy2LPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
-            #print "double left click"
-            liczbaKlatekLPM = 0
-            liczbaKlatek2LPM +=1 
-            liczbaKlatekPPM = 0
-        elif( czyPPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
-            #print "right click"
-            liczbaKlatekLPM = 0
-            liczbaKlatek2LPM = 0
-            liczbaKlatekPPM += 1
+        if( ( pupilX == pupilXOld ) & ( pupilY == pupilYOld ) ):
+            #jezeli oko jest w bezruchu to sprawdzam na ktorym polu stoi
+            if( czyLPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
+                #print "LPM"
+                liczbaKlatekLPM += 1
+                liczbaKlatek2LPM = 0
+                liczbaKlatekPPM = 0
+            elif( czy2LPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
+                #print "double left click"
+                liczbaKlatekLPM = 0
+                liczbaKlatek2LPM += 1 
+                liczbaKlatekPPM = 0
+            elif( czyPPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
+                #print "right click"
+                liczbaKlatekLPM = 0
+                liczbaKlatek2LPM = 0
+                liczbaKlatekPPM += 1
+            else:
+                liczbaKlatekLPM = 0
+                liczbaKlatek2LPM = 0
+                liczbaKlatekPPM = 0
+            if(liczbaKlatekLPM > LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI):
+                print "KLIKAJ LEWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+                pyautogui.click()
+                liczbaKlatekLPM = 0
+            if(liczbaKlatek2LPM > LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI):
+                print "KLIKAJ 2x LEWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+                pyautogui.click(clicks=2)
+                liczbaKlatek2LPM = 0
+            if(liczbaKlatekPPM > LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI):
+                print "KLIKAJ PRAWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+                pyautogui.click(button='right')
+                liczbaKlatekPPM = 0
         else:
             liczbaKlatekLPM = 0
             liczbaKlatek2LPM = 0
             liczbaKlatekPPM = 0
-        if(liczbaKlatekLPM > LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI):
-            print "KLIKAJ LEWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-            pyautogui.click()
-            liczbaKlatekLPM = 0
-        if(liczbaKlatek2LPM > LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI):
-            print "KLIKAJ 2x LEWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-            pyautogui.click(clicks=2)
-            liczbaKlatek2LPM = 0
-        if(liczbaKlatekPPM > LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI):
-            print "KLIKAJ PRAWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-            pyautogui.click(button='right')
-            liczbaKlatekPPM = 0
         #if menu.isModeOn():
+        pupilXOld = pupilX
+        pupilYOld = pupilY
         
         vis = img.copy()
         #vis = cv2.flip(vis, 1)

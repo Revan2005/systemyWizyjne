@@ -21,10 +21,10 @@ screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 
 
+ramkaWidth = 25
+ramkaHeight = 15
+gruboscObszaruSterowaniaKursorem = 2;
 
-ramkaWidth = 30
-ramkaHeight = 21
-gruboscObszaruSterowaniaKursorrem = 8;
 
 def czyMoznaWPrawo(px, py, capWidth, capHeight):
     if px < capWidth-ramkaWidth / 2 - 5:
@@ -56,7 +56,7 @@ def black_field(thresh, (pupilX, pupilY)):
   
 def korektaPupil(thresh, (x0,y0), (pupilX, pupilY)):
     #screenHeight, screenWidth = np.shape(thresh)
-    margines = 8 #kazdy piksel to inny 'bieg'
+    margines = gruboscObszaruSterowaniaKursorem #kazdy piksel to inny 'bieg'
     dXmax = ramkaWidth/2.0
     dYmax = ramkaHeight/2.0
     dXmin = dXmax - margines
@@ -72,10 +72,10 @@ def korektaPupil(thresh, (x0,y0), (pupilX, pupilY)):
     
     if abs(dX)>dXmin:
         if dX>0:
-            speedPosX = 2
+            speedPosX = 3
             print 'predkosc 1'
             if dX>dXmin+1:
-                speedPosX = 2
+                speedPosX = 3
                 print "predkosc 2"
             if dX>dXmin+2:
                 speedPosX = 5
@@ -84,75 +84,75 @@ def korektaPupil(thresh, (x0,y0), (pupilX, pupilY)):
                 speedPosX = 5
                 print "predkosc 10"
             if dX>dXmin+4:
-                speedPosX = 10
+                speedPosX = 5
                 print "predkosc 20"
             if dX>dXmin+5:
-                speedPosX = 20
+                speedPosX = 5
                 print "predkosc 50"
             if dX>dXmin+6:
-                speedPosX = 35
+                speedPosX = 5
                 print 'predkosc 100'
             if dX>dXmin+7:
-                speedPosX = 50
+                speedPosX = 5
                 print 'predkosc 100'
             if dX>dXmin+8:
-                speedPosX = 100
+                speedPosX = 5
                 print 'predkosc 100'
         else:
-            speedNegX = 2
+            speedNegX = 3
             if dX<-dXmin-1:
-                speedNegX = 2
+                speedNegX = 3
             if dX<-dXmin-2:
                 speedNegX = 5
             if dX<-dXmin-3:
                 speedNegX = 5
             if dX<-dXmin-4:
-                speedNegX = 10
+                speedNegX = 5
             if dX<-dXmin-5:
-                speedNegX = 20
+                speedNegX = 5
             if dX<-dXmin-6:
-                speedNegX = 35
+                speedNegX = 5
             if dX<-dXmin-7:
-                speedNegX = 50
+                speedNegX = 5
             if dX<-dXmin-8:
-                speedNegX = 100
+                speedNegX = 5
     if abs(dY)>dYmin:
         if dY>0:
-            speedPosY = 2
+            speedPosY = 3
             if dY>dYmin+1:
-                speedPosY = 2
+                speedPosY = 3
             if dY>dYmin+2:
                 speedPosY = 5
             if dY>dYmin+3:
                 speedPosY = 5
             if dY>dYmin+4:
-                speedPosY = 10
+                speedPosY = 5
             if dY>dYmin+5:
-                speedPosY = 20
+                speedPosY = 5
             if dY>dYmin+6:
-                speedPosY = 35
+                speedPosY = 5
             if dY>dYmin+7:
-                speedPosY = 50
+                speedPosY = 5
             if dY>dYmin+8:
-                speedPosY = 100
+                speedPosY = 5
         else:
-            speedNegY = 2
+            speedNegY = 3
             if dY<-dYmin-1:
-                speedNegY = 2
+                speedNegY = 3
             if dY<-dYmin-2:
                 speedNegY = 5
             if dY<-dYmin-3:
                 speedNegY = 5
             if dY<-dYmin-4:
-                speedNegY = 10
+                speedNegY = 5
             if dY<-dYmin-5:
-                speedNegY = 20
+                speedNegY = 5
             if dY<-dYmin-6:
-                speedNegY = 35
+                speedNegY = 5
             if dY<-dYmin-7:
-                speedNegY = 50
+                speedNegY = 5
             if dY<-dYmin-8:
-                speedNegY = 100
+                speedNegY = 5
                   
     kierunek = 0 #kierunek 0 brak, 1-gora 2-prawo 3-dol, 4-lewo              
     maxSpeed = max([speedPosX, speedNegX, speedPosY, speedNegY])
