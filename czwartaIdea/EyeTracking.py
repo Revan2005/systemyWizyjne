@@ -4,6 +4,7 @@ Created on 03-11-2015
 @author: tomek
 '''
 import numpy as np
+import sys
 import cv2
 from methods import *
 import Tkinter as tk
@@ -21,21 +22,16 @@ root = tk.Tk()
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 
-ramkaWidth = 25
-ramkaHeight = 15
+
 gruboscObszaruSterowaniaKursorem = 2;
 
-dlugoscObszaruKlikania = ramkaWidth - 2*gruboscObszaruSterowaniaKursorem
-wysokoscObszaruKlikania = ramkaHeight - 2*gruboscObszaruSterowaniaKursorem
 
 #inicjalizacja licznikowKlatek
 liczbaKlatekLPM = 0
 liczbaKlatek2LPM = 0
 liczbaKlatekPPM = 0
-LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = 150
 
 accelerationCounter = 0
-lICZBA_KLATEK_DO_PRZYSPIESZENIA = 3
 maxSpeed = 100
 kierunekOld = 0
 
@@ -121,6 +117,24 @@ def setThresholdValue(blurred, (pupilX, pupilY), okolicaOkaSize, threshold_value
 
 
 if __name__ == '__main__':
+    
+    if len(sys.argv) == 5:
+        ramkaWidth = int(sys.argv[1])
+        ramkaHeight = int(sys.argv[2])
+        lICZBA_KLATEK_DO_PRZYSPIESZENIA = int(sys.argv[3])
+        LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = int(sys.argv[4])
+    else:
+        # ustawienia domyslne
+        ramkaWidth = 25
+        ramkaHeight = 15
+        lICZBA_KLATEK_DO_PRZYSPIESZENIA = 3
+        LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = 15
+    dlugoscObszaruKlikania = ramkaWidth - 2*gruboscObszaruSterowaniaKursorem
+    wysokoscObszaruKlikania = ramkaHeight - 2*gruboscObszaruSterowaniaKursorem
+    m = methodsObj(ramkaWidth, ramkaHeight)
+    
+    print str(ramkaWidth)+" "+str(ramkaHeight)
+    m.printWidthHeightRamki()
     #showMenu()
     eye_cascade = cv2.CascadeClassifier('/home/tomek/workspace/systemyWizyjne/xmle/haarcascade_eye.xml')
     '''   
@@ -191,7 +205,7 @@ if __name__ == '__main__':
         
         #wywolanie glownej metody ============================================================================================================
 
-        pupilX, pupilY, x0, y0, kierunek = pupil_position_meanshift(thresh, (x0, y0), (pupilX, pupilY), (capWidth, capHeight))
+        pupilX, pupilY, x0, y0, kierunek = m.pupil_position_meanshift(thresh, (x0, y0), (pupilX, pupilY), (capWidth, capHeight))
         '''
         crop_width = 30
         crop_height = 30
