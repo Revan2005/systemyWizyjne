@@ -32,7 +32,16 @@ wysokoscObszaruKlikania = ramkaHeight - 2*gruboscObszaruSterowaniaKursorem
 liczbaKlatekLPM = 0
 liczbaKlatek2LPM = 0
 liczbaKlatekPPM = 0
-LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = 15
+LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = 150
+
+accelerationCounter = 0
+lICZBA_KLATEK_DO_PRZYSPIESZENIA = 3
+maxSpeed = 100
+kierunekOld = 0
+
+def getNewSpeed(speed):
+    print "speed: ", speed
+    return speed + 1
 
 def czyLPM( (x, y), (x0, y0) ):
     if( (x0 < x) & (x <= x0 + dlugoscObszaruKlikania/3) & (y0 < y) & (y < y0 + wysokoscObszaruKlikania) ):
@@ -182,7 +191,7 @@ if __name__ == '__main__':
         
         #wywolanie glownej metody ============================================================================================================
 
-        pupilX, pupilY, x0, y0, kierunek, speed = pupil_position_meanshift(thresh, (x0, y0), (pupilX, pupilY), (capWidth, capHeight))
+        pupilX, pupilY, x0, y0, kierunek = pupil_position_meanshift(thresh, (x0, y0), (pupilX, pupilY), (capWidth, capHeight))
         '''
         crop_width = 30
         crop_height = 30
@@ -193,7 +202,20 @@ if __name__ == '__main__':
         y0 = int(y0)
         
         #koniec wywolania glownej metody =====================================================================================================
-       
+        
+        # mam speed i kierunek 
+        # kierunek 0 brak, 1-gora 2-prawo 3-dol, 4-lewo  
+        if (kierunek != 0) & (kierunek != kierunekOld):
+            speed = 1
+        if (kierunek != 0) & (kierunek == kierunekOld):
+            accelerationCounter += 1
+        if (kierunek == 0):
+            accelerationCounter = 0
+            speed = 0
+        if accelerationCounter > lICZBA_KLATEK_DO_PRZYSPIESZENIA:
+            speed = getNewSpeed(speed)
+            accelerationCounter = 0
+        
         '''
         cv2.moveWindow("thresh", 800,0)
         cv2.rectangle(img,(x-w/2,y-h/2),(x+w/2,y+h/2),(0,255,0),2)
@@ -256,8 +278,12 @@ if __name__ == '__main__':
             liczbaKlatek2LPM = 0
             liczbaKlatekPPM = 0
         #if menu.isModeOn():
+        
+        
+        
         pupilXOld = pupilX
         pupilYOld = pupilY
+        kierunekOld = kierunek
         
         vis = img.copy()
         #vis = cv2.flip(vis, 1)

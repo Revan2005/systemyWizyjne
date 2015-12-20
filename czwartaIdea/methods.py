@@ -62,114 +62,45 @@ def korektaPupil(thresh, (x0,y0), (pupilX, pupilY)):
     dXmin = dXmax - margines
     dYmin = dYmax - margines
     #jezeli zrenica jest w "obramowaniu" okienka to czytam to jako polecenie ruchu kursorem
-    speed = 0
-    speedPosX = 0
-    speedNegX = 0
-    speedPosY = 0
-    speedNegY = 0
+    directionPosX = 0
+    directionNegX = 0
+    directionPosY = 0
+    directionNegY = 0
     dX = pupilX-x0
     dY = pupilY-y0
     
     if abs(dX)>dXmin:
         if dX>0:
-            speedPosX = 3
-            print 'predkosc 1'
-            if dX>dXmin+1:
-                speedPosX = 3
-                print "predkosc 2"
-            if dX>dXmin+2:
-                speedPosX = 5
-                print "predkosc 4"
-            if dX>dXmin+3:
-                speedPosX = 5
-                print "predkosc 10"
-            if dX>dXmin+4:
-                speedPosX = 5
-                print "predkosc 20"
-            if dX>dXmin+5:
-                speedPosX = 5
-                print "predkosc 50"
-            if dX>dXmin+6:
-                speedPosX = 5
-                print 'predkosc 100'
-            if dX>dXmin+7:
-                speedPosX = 5
-                print 'predkosc 100'
-            if dX>dXmin+8:
-                speedPosX = 5
-                print 'predkosc 100'
+            #speedPosX = 3
+            if dX>dXmin:
+                directionPosX = 1
         else:
-            speedNegX = 3
-            if dX<-dXmin-1:
-                speedNegX = 3
-            if dX<-dXmin-2:
-                speedNegX = 5
-            if dX<-dXmin-3:
-                speedNegX = 5
-            if dX<-dXmin-4:
-                speedNegX = 5
-            if dX<-dXmin-5:
-                speedNegX = 5
-            if dX<-dXmin-6:
-                speedNegX = 5
-            if dX<-dXmin-7:
-                speedNegX = 5
-            if dX<-dXmin-8:
-                speedNegX = 5
+            #speedNegX = 3
+            if dX<-dXmin:
+                directionNegX = 1
     if abs(dY)>dYmin:
         if dY>0:
-            speedPosY = 3
-            if dY>dYmin+1:
-                speedPosY = 3
-            if dY>dYmin+2:
-                speedPosY = 5
-            if dY>dYmin+3:
-                speedPosY = 5
-            if dY>dYmin+4:
-                speedPosY = 5
-            if dY>dYmin+5:
-                speedPosY = 5
-            if dY>dYmin+6:
-                speedPosY = 5
-            if dY>dYmin+7:
-                speedPosY = 5
-            if dY>dYmin+8:
-                speedPosY = 5
+            #speedPosY = 3
+            if dY>dYmin:
+                directionPosY = 1
         else:
-            speedNegY = 3
-            if dY<-dYmin-1:
-                speedNegY = 3
-            if dY<-dYmin-2:
-                speedNegY = 5
-            if dY<-dYmin-3:
-                speedNegY = 5
-            if dY<-dYmin-4:
-                speedNegY = 5
-            if dY<-dYmin-5:
-                speedNegY = 5
-            if dY<-dYmin-6:
-                speedNegY = 5
-            if dY<-dYmin-7:
-                speedNegY = 5
-            if dY<-dYmin-8:
-                speedNegY = 5
-                  
-    kierunek = 0 #kierunek 0 brak, 1-gora 2-prawo 3-dol, 4-lewo              
-    maxSpeed = max([speedPosX, speedNegX, speedPosY, speedNegY])
-    #print speedPosX, speedPosY, speedNegX, speedNegY, maxSpeed
-    
-    if speedPosX == maxSpeed:
-        kierunek = 2
-    elif speedNegX == maxSpeed:
-        kierunek = 4
-    elif speedPosY == maxSpeed:
-        kierunek = 3
-    elif speedNegY == maxSpeed:
-        kierunek = 1
-    speed = maxSpeed
-    #print 'speed na koncu = ', speed
+            #speedNegY = 3
+            if dY<-dYmin:
+                directionNegY = 1
 
-    return (pupilX, pupilY, x0, y0, kierunek, speed)
+                  
+    kierunek = 0 #kierunek 0 brak, 1-gora 2-prawo 3-dol, 4-lewo   
+    if directionPosX == 1:
+        kierunek = 2
+    elif directionNegX == 1:
+        kierunek = 4
+    elif directionPosY == 1:
+        kierunek = 3
+    elif directionNegY == 1:
+        kierunek = 1
+    else: 
+        kierunek = 0
+    return (pupilX, pupilY, x0, y0, kierunek)
 
 def obliczPozycjeRamki(thresh, (x0,y0), (pupilX, pupilY)):
     dXmax = ramkaWidth/2.0
@@ -193,7 +124,6 @@ def pupil_position_meanshift(thresh, (x0, y0), (pupilX, pupilY), (capWidth, capH
     lewo = black_field(thresh, (pupilX-1, pupilY))
     gora = black_field(thresh, (pupilX, pupilY-1))
     dol = black_field(thresh, (pupilX, pupilY+1))
-    kierunek = 0
     
     while (obecnie < max([prawo, lewo, gora, dol])): 
         if prawo > obecnie:
@@ -221,8 +151,8 @@ def pupil_position_meanshift(thresh, (x0, y0), (pupilX, pupilY), (capWidth, capH
         #if pozaEkranem(pupilX, pupilY, capWidth, capHeight):
         #    break
     
-    pupilX, pupilY , x0, y0, kierunek, speed = korektaPupil(thresh, (x0,y0), (pupilX, pupilY))    
-    return (pupilX, pupilY, x0, y0, kierunek, speed)
+    pupilX, pupilY , x0, y0, kierunek = korektaPupil(thresh, (x0,y0), (pupilX, pupilY))    
+    return (pupilX, pupilY, x0, y0, kierunek)
 
 
 
