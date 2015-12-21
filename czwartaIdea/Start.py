@@ -21,11 +21,11 @@ if __name__ == "__main__":
     def start():
         ramkaWidth = widthTrackbar.get()
         ramkaHeight = heightTrackbar.get()
-        LICZBA_KLATEK_DO_PRZYSPIESZENIA = accelerationTrackbar.get()
+        CZAS_DO_PRZYSPIESZENIA = accelerationTrackbar.get()
         LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = clickTrackbar.get()
         top.destroy()
         os.system("python EyeTracking.py " + str(ramkaWidth) + " " + str(ramkaHeight) + 
-                  " " + str(LICZBA_KLATEK_DO_PRZYSPIESZENIA) + " " + str(LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI))
+                  " " + str(CZAS_DO_PRZYSPIESZENIA) + " " + str(LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI))
         
     B = Button(top, text ="Uruchom", command = start)
     B.pack()

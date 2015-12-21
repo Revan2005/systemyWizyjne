@@ -16,6 +16,7 @@ from math import atan2
 import ranzac
 import pyautogui
 from matplotlib.backends.windowing import SetForegroundWindow
+import time
 
 
 root = tk.Tk()
@@ -25,6 +26,8 @@ screen_height = root.winfo_screenheight()
 
 gruboscObszaruSterowaniaKursorem = 2;
 
+start = 0
+stop = 0
 
 #inicjalizacja licznikowKlatek
 liczbaKlatekLPM = 0
@@ -121,13 +124,13 @@ if __name__ == '__main__':
     if len(sys.argv) == 5:
         ramkaWidth = int(sys.argv[1])
         ramkaHeight = int(sys.argv[2])
-        lICZBA_KLATEK_DO_PRZYSPIESZENIA = int(sys.argv[3])
+        CZAS_DO_PRZYSPIESZENIA = int(sys.argv[3])
         LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = int(sys.argv[4])
     else:
         # ustawienia domyslne
         ramkaWidth = 25
         ramkaHeight = 15
-        lICZBA_KLATEK_DO_PRZYSPIESZENIA = 3
+        CZAS_DO_PRZYSPIESZENIA = 3
         LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = 15
     dlugoscObszaruKlikania = ramkaWidth - 2*gruboscObszaruSterowaniaKursorem
     wysokoscObszaruKlikania = ramkaHeight - 2*gruboscObszaruSterowaniaKursorem
@@ -221,12 +224,16 @@ if __name__ == '__main__':
         # kierunek 0 brak, 1-gora 2-prawo 3-dol, 4-lewo  
         if (kierunek != 0) & (kierunek != kierunekOld):
             speed = 1
+            start = time.time()
         if (kierunek != 0) & (kierunek == kierunekOld):
-            accelerationCounter += 1
+            stop = time.time()
+            accelerationCounter += stop - start
+            print accelerationCounter, CZAS_DO_PRZYSPIESZENIA, start, stop, stop - start
+            start = time.time()
         if (kierunek == 0):
             accelerationCounter = 0
             speed = 0
-        if accelerationCounter > lICZBA_KLATEK_DO_PRZYSPIESZENIA:
+        if accelerationCounter > CZAS_DO_PRZYSPIESZENIA:
             speed = getNewSpeed(speed)
             accelerationCounter = 0
         
