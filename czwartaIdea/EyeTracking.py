@@ -38,9 +38,9 @@ accelerationCounter = 0
 maxSpeed = 100
 kierunekOld = 0
 
-def getNewSpeed(speed):
+def getNewSpeed(speed, ileJednostekCzasuUplynelo):
     print "speed: ", speed
-    return speed + 1
+    return speed + ileJednostekCzasuUplynelo * 1
 
 def czyLPM( (x, y), (x0, y0) ):
     if( (x0 < x) & (x <= x0 + dlugoscObszaruKlikania/3) & (y0 < y) & (y < y0 + wysokoscObszaruKlikania) ):
@@ -124,17 +124,19 @@ if __name__ == '__main__':
     if len(sys.argv) == 5:
         ramkaWidth = int(sys.argv[1])
         ramkaHeight = int(sys.argv[2])
-        CZAS_DO_PRZYSPIESZENIA = int(sys.argv[3])
+        PRZYSPIESZENIE = float(sys.argv[3])
         LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = int(sys.argv[4])
     else:
         # ustawienia domyslne
         ramkaWidth = 25
         ramkaHeight = 15
-        CZAS_DO_PRZYSPIESZENIA = 3
+        PRZYSPIESZENIE = 3.0
         LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = 15
     dlugoscObszaruKlikania = ramkaWidth - 2*gruboscObszaruSterowaniaKursorem
     wysokoscObszaruKlikania = ramkaHeight - 2*gruboscObszaruSterowaniaKursorem
     m = methodsObj(ramkaWidth, ramkaHeight)
+    
+    CZAS_DO_PRZYSPIESZENIA = 1.0 / PRZYSPIESZENIE
     
     print str(ramkaWidth)+" "+str(ramkaHeight)
     m.printWidthHeightRamki()
@@ -234,7 +236,8 @@ if __name__ == '__main__':
             accelerationCounter = 0
             speed = 0
         if accelerationCounter > CZAS_DO_PRZYSPIESZENIA:
-            speed = getNewSpeed(speed)
+            ileJednostekCzasuUplynelo = int(accelerationCounter * 1000) / int(CZAS_DO_PRZYSPIESZENIA * 1000)
+            speed = getNewSpeed(speed, ileJednostekCzasuUplynelo)
             accelerationCounter = 0
         
         '''
