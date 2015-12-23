@@ -28,11 +28,12 @@ gruboscObszaruSterowaniaKursorem = 2;
 
 start = 0
 stop = 0
+startOdliczanieKlikanie = time.time()
 
 #inicjalizacja licznikowKlatek
-liczbaKlatekLPM = 0
-liczbaKlatek2LPM = 0
-liczbaKlatekPPM = 0
+czasLPM = 0
+czas2LPM = 0
+czasPPM = 0
 
 accelerationCounter = 0
 maxSpeed = 100
@@ -117,6 +118,51 @@ def setThresholdValue(blurred, (pupilX, pupilY), okolicaOkaSize, threshold_value
     threshold_value = tmp_threshold_value   
     return threshold_value
 
+def clickIfShould( (pupilX, pupilY), (pupilXOld, pupilYOld), (x0Klikanie, y0Klikanie), czasLPM, czas2LPM, czasPPM, start):
+    #sprawdzam czy kursor jest w ktoryms z obrzarow klikania 
+    #i jezeli jest w bezruchu to klikam
+    if( ( pupilX == pupilXOld ) & ( pupilY == pupilYOld ) ):
+        #jezeli oko jest w bezruchu to sprawdzam na ktorym polu stoi
+        if( czyLPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
+            #print "LPM"
+            stop = time.time()
+            czasLPM += (stop - start)
+            czas2LPM = 0
+            czasPPM = 0
+        elif( czy2LPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
+            #print "double left click"
+            stop = time.time()
+            czasLPM = 0
+            czas2LPM += (stop - start)
+            czasPPM = 0
+        elif( czyPPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
+            #print "right click"
+            stop = time.time()
+            czasLPM = 0
+            czas2LPM = 0
+            czasPPM += (stop - start)
+        else:
+            czasLPM = 0
+            czas2LPM = 0
+            czasPPM = 0
+        if(czasLPM > CZAS_POMIEDZY_KLIKNIECIAMI):
+            print "KLIKAJ LEWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            pyautogui.click()
+            czasLPM = 0
+        if(czas2LPM > CZAS_POMIEDZY_KLIKNIECIAMI):
+            print "KLIKAJ 2x LEWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            pyautogui.click(clicks=2)
+            czas2LPM = 0
+        if(czasPPM > CZAS_POMIEDZY_KLIKNIECIAMI):
+            print "KLIKAJ PRAWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            pyautogui.click(button='right')
+            czasPPM = 0
+    else:
+        czasLPM = 0
+        czas2LPM = 0
+        czasPPM = 0
+    return (czasLPM, czas2LPM, czasPPM)
+
 
 
 if __name__ == '__main__':
@@ -125,18 +171,19 @@ if __name__ == '__main__':
         ramkaWidth = int(sys.argv[1])
         ramkaHeight = int(sys.argv[2])
         PRZYSPIESZENIE = float(sys.argv[3])
-        LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = int(sys.argv[4])
+        CZAS_POMIEDZY_KLIKNIECIAMI = int(sys.argv[4])
     else:
         # ustawienia domyslne
         ramkaWidth = 25
         ramkaHeight = 15
         PRZYSPIESZENIE = 3.0
-        LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI = 15
+        CZAS_POMIEDZY_KLIKNIECIAMI = 5
     dlugoscObszaruKlikania = ramkaWidth - 2*gruboscObszaruSterowaniaKursorem
     wysokoscObszaruKlikania = ramkaHeight - 2*gruboscObszaruSterowaniaKursorem
     m = methodsObj(ramkaWidth, ramkaHeight)
     
     CZAS_DO_PRZYSPIESZENIA = 1.0 / PRZYSPIESZENIE
+
     
     print str(ramkaWidth)+" "+str(ramkaHeight)
     m.printWidthHeightRamki()
@@ -230,7 +277,7 @@ if __name__ == '__main__':
         if (kierunek != 0) & (kierunek == kierunekOld):
             stop = time.time()
             accelerationCounter += stop - start
-            print accelerationCounter, CZAS_DO_PRZYSPIESZENIA, start, stop, stop - start
+            #print accelerationCounter, CZAS_DO_PRZYSPIESZENIA, start, stop, stop - start
             start = time.time()
         if (kierunek == 0):
             accelerationCounter = 0
@@ -263,44 +310,13 @@ if __name__ == '__main__':
         #rysuje niebieska kropke z pozycja zrenicy
         cv2.rectangle(img, (pupilX, pupilY), (pupilX-1, pupilY+1), (255,0,0),2)#plus w, minus przy a :bo robie flip = obrot prawo lewo = lustrzane odbicie
         moveCursor(kierunek, speed)
+        
+        
+        
         #sprawdzam czy kursor jest w ktoryms z obrzarow klikania 
-        if( ( pupilX == pupilXOld ) & ( pupilY == pupilYOld ) ):
-            #jezeli oko jest w bezruchu to sprawdzam na ktorym polu stoi
-            if( czyLPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
-                #print "LPM"
-                liczbaKlatekLPM += 1
-                liczbaKlatek2LPM = 0
-                liczbaKlatekPPM = 0
-            elif( czy2LPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
-                #print "double left click"
-                liczbaKlatekLPM = 0
-                liczbaKlatek2LPM += 1 
-                liczbaKlatekPPM = 0
-            elif( czyPPM((pupilX, pupilY), (x0Klikanie, y0Klikanie)) ):
-                #print "right click"
-                liczbaKlatekLPM = 0
-                liczbaKlatek2LPM = 0
-                liczbaKlatekPPM += 1
-            else:
-                liczbaKlatekLPM = 0
-                liczbaKlatek2LPM = 0
-                liczbaKlatekPPM = 0
-            if(liczbaKlatekLPM > LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI):
-                print "KLIKAJ LEWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-                pyautogui.click()
-                liczbaKlatekLPM = 0
-            if(liczbaKlatek2LPM > LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI):
-                print "KLIKAJ 2x LEWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-                pyautogui.click(clicks=2)
-                liczbaKlatek2LPM = 0
-            if(liczbaKlatekPPM > LICZBA_KLATEK_POTRZEBNA_DO_AKTYWACJI):
-                print "KLIKAJ PRAWYM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-                pyautogui.click(button='right')
-                liczbaKlatekPPM = 0
-        else:
-            liczbaKlatekLPM = 0
-            liczbaKlatek2LPM = 0
-            liczbaKlatekPPM = 0
+        #i jezeli jest w bezruchu to klikam
+        czasLPM, czas2LPM, czasPPM = clickIfShould( (pupilX, pupilY), (pupilXOld, pupilYOld), (x0Klikanie, y0Klikanie), czasLPM, czas2LPM, czasPPM, startOdliczanieKlikanie)
+        startOdliczanieKlikanie = time.time()
         #if menu.isModeOn():
         
         
