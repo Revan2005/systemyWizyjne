@@ -10,8 +10,9 @@ from random import randint
 from Xlib import display
 import math
 import methods
+from methods import *
 
-
+mO = methodsObj(200, 150)
 
 def pupil_position_ranzac(thresh, (x0, y0), (pupilX, pupilY), (crop_width, crop_height), (cap_width, cap_height)):
     oko_thresh = thresh[(y0 - crop_height / 2):(y0 + crop_height / 2), (x0 - crop_width / 2):(x0 + crop_width / 2)]
@@ -27,8 +28,8 @@ def pupil_position_ranzac(thresh, (x0, y0), (pupilX, pupilY), (crop_width, crop_
     
     pupilX, pupilY = poprawka_na_krawedz_ekranu((pupilX, pupilY), (crop_width, crop_height), (cap_width, cap_height))
     
-    x0, y0 = methods.obliczPozycjeRamki(thresh, (x0, y0), (pupilX, pupilY))
-    pupilX, pupilY , x0, y0, kierunek, speed = methods.korektaPupil(thresh, (x0,y0), (pupilX, pupilY))    
+    x0, y0 = mO.obliczPozycjeRamki(thresh, (x0, y0), (pupilX, pupilY))
+    pupilX, pupilY , x0, y0, kierunek, speed = mO.korektaPupil(thresh, (x0,y0), (pupilX, pupilY))    
     return (pupilX, pupilY, x0, y0, kierunek, speed)
 
 def poprawka_na_krawedz_ekranu((pupilX, pupilY), (crop_width, crop_height), (cap_width, cap_height)):
@@ -155,7 +156,7 @@ def getPupilPosition(thresh):
     return (xCircle, yCircle, rCircle)
 
 
-'''
+
 def drawPoints(img, points):
     for (a, b) in points:
         cv2.circle(img,(a,b),1,(255,0,255),1)
@@ -198,7 +199,7 @@ def capture():
         oko_gray = cv2.cvtColor(oko_color, cv2.COLOR_BGR2GRAY)
         value = (35, 35)
         blurred = cv2.GaussianBlur(oko_gray, value, 2)
-        _, oko_thresh = cv2.threshold(blurred, 60, 255, cv2.ADAPTIVE_THRESH_MEAN_C)
+        _, oko_thresh = cv2.threshold(blurred, 57, 255, cv2.ADAPTIVE_THRESH_MEAN_C)
         points = getBorderPoints(oko_thresh)
         oko_punkty = oko_color.copy()
         drawPoints(oko_punkty, points)
@@ -232,4 +233,3 @@ def capture():
 
 if __name__ == '__main__':
     capture()
-'''

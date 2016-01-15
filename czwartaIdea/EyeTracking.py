@@ -13,7 +13,7 @@ from Xlib import display
 from numpy import sqrt, real, math, double, sinc
 from cmath import atan, cos, sin, cosh
 from math import atan2
-import ranzac
+#import ranzac
 import pyautogui
 from matplotlib.backends.windowing import SetForegroundWindow
 import time
@@ -24,7 +24,7 @@ screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 
 
-gruboscObszaruSterowaniaKursorem = 2;
+gruboscObszaruSterowaniaKursorem = 1;
 
 start = 0
 stop = 0
@@ -216,6 +216,7 @@ if __name__ == '__main__':
     
     threshold_value = 70
     cv2.namedWindow('image')
+    cv2.moveWindow('image', 0, 0)
     
     
     def nothing(*arg):

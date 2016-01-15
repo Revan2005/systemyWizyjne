@@ -8,7 +8,7 @@ import cv2
 #import video
 from methods import *
 import Tkinter as tk
-from Xlib import display
+#from Xlib import display
 #from menu import *
 from numpy import sqrt, real, math, double
 from cmath import atan, cos, sin
